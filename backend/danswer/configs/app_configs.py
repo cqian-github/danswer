@@ -46,8 +46,10 @@ SESSION_EXPIRE_TIME_SECONDS = int(
 VALID_EMAIL_DOMAIN = os.environ.get("VALID_EMAIL_DOMAIN", "")
 # OAuth Login Flow
 ENABLE_OAUTH = os.environ.get("ENABLE_OAUTH", "").lower() != "false"
-GOOGLE_OAUTH_CLIENT_ID = os.environ.get("GOOGLE_OAUTH_CLIENT_ID", "")
-GOOGLE_OAUTH_CLIENT_SECRET = os.environ.get("GOOGLE_OAUTH_CLIENT_SECRET", "")
+OAUTH_TYPE = os.environ.get("OAUTH_TYPE", "google").lower()
+OAUTH_CLIENT_ID = os.environ.get("OAUTH_CLIENT_ID", os.environ.get("GOOGLE_OAUTH_CLIENT_ID", ""))
+OAUTH_CLIENT_SECRET = os.environ.get("OAUTH_CLIENT_SECRET", os.environ.get("GOOGLE_OAUTH_CLIENT_SECRET", ""))
+OPENID_CONFIG_URL = os.environ.get("OPENID_CONFIG_URL", "")
 MASK_CREDENTIAL_PREFIX = (
     os.environ.get("MASK_CREDENTIAL_PREFIX", "True").lower() != "false"
 )
@@ -90,6 +92,16 @@ GOOGLE_DRIVE_INCLUDE_SHARED = False
 FILE_CONNECTOR_TMP_STORAGE_PATH = os.environ.get(
     "FILE_CONNECTOR_TMP_STORAGE_PATH", "/home/file_connector_storage"
 )
+# TODO these should be available for frontend configuration, via advanced options expandable
+WEB_CONNECTOR_IGNORED_CLASSES = os.environ.get(
+    "WEB_CONNECTOR_IGNORED_CLASSES", "sidebar,header,footer"
+).split(",")
+WEB_CONNECTOR_IGNORED_ELEMENTS = os.environ.get(
+    "WEB_CONNECTOR_IGNORED_ELEMENTS", "nav,header,footer,meta,script,style,symbol,aside"
+).split(",")
+WEB_CONNECTOR_OAUTH_CLIENT_ID = os.environ.get("WEB_CONNECTOR_OAUTH_CLIENT_ID")
+WEB_CONNECTOR_OAUTH_CLIENT_SECRET = os.environ.get("WEB_CONNECTOR_OAUTH_CLIENT_SECRET")
+WEB_CONNECTOR_OAUTH_TOKEN_URL = os.environ.get("WEB_CONNECTOR_OAUTH_TOKEN_URL")
 
 #####
 # Query Configs
